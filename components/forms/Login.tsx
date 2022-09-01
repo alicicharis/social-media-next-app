@@ -1,42 +1,68 @@
-import React, { Fragment, useContext } from "react";
+import { useRouter } from "next/router";
+import React, { Fragment, useContext, useRef, useState } from "react";
+import { signIn } from "next-auth/react";
 
 import classes from "./SignUp.module.css";
 import DisplayContext from "../../store/FormContext";
 import Button from "../UI/Button";
 
-const Login = () => {
+const Login: React.FC = () => {
+  const [userValid, setUserValid] = useState<boolean>(true);
+
+  const router = useRouter();
+  const emailInputRef = useRef<HTMLInputElement>(null);
+  const passwordInputRef = useRef<HTMLInputElement>(null);
+
   const displayCtx = useContext(DisplayContext);
 
   const clickHandler = () => {
     displayCtx?.setDisplay();
   };
-
-  const formSubmitHandler = (event: React.FormEvent) => {
+  const formSubmitHandler = async (event: React.FormEvent) => {
     event.preventDefault();
-  };
 
+    const enteredEmail = emailInputRef.current!.value;
+    const enteredPassword = passwordInputRef.current!.value;
+
+    const result = await signIn("credentials", {
+      redirect: false,
+      email: enteredEmail,
+      password: enteredPassword,
+    });
+
+    if (!result?.error) {
+      setUserValid(true);
+      router.push("/success");
+      return;
+    }
+
+    setUserValid(false);
+  };
   return (
     <Fragment>
       <div className={classes.container}>
         <form onSubmit={formSubmitHandler} className={classes.form}>
-          {/* <label className={classes.label} htmlFor="username">
-            Username
-            <input className={classes.input} type="text" />
-          </label> */}
           <label className={classes.label} htmlFor="email">
             Email
-            <input className={classes.input} type="email" />
+            <input className={classes.input} type="email" ref={emailInputRef} />
           </label>
           <label className={classes.label} htmlFor="password">
             Password
-            <input className={classes.input} type="text" />
+            <input
+              className={classes.input}
+              type="password"
+              ref={passwordInputRef}
+            />
           </label>
+          {!userValid && (
+            <p className={classes.error}>No User With That Credentials!</p>
+          )}
           <Button>Log In</Button>
           <p>
             {" "}
             Do Not Have An Account ?{" "}
             <span onClick={clickHandler} className={classes.span}>
-              Sign In
+              Sign Up
             </span>
           </p>
         </form>
