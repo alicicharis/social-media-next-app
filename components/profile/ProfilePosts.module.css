@@ -1,0 +1,35 @@
+.profile-posts-title {
+  color: white;
+  text-align: center;
+  margin-top: 2rem;
+}
+.profile-posts {
+  background-color: white;
+  height: auto;
+  border-radius: 10px;
+  padding: 10px;
+}
+.profile-post {
+  display: flex;
+  flex-direction: column;
+  background-color: rgb(13, 219, 82);
+  padding: 10px;
+  color: white;
+  border-radius: 10px;
+}
+.post-info {
+  display: flex;
+}
+.post-description {
+  margin-left: 20px;
+  font-size: 1.2rem;
+}
+.post-image {
+  border-radius: 50%;
+}
+.post-span {
+  margin-top: 20px;
+  display: block;
+  width: 100%;
+  border-top: 1px solid white;
+}

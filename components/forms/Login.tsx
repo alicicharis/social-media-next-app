@@ -32,7 +32,7 @@ const Login: React.FC = () => {
 
     if (!result?.error) {
       setUserValid(true);
-      router.push("/success");
+      router.push("/profile");
       return;
     }
 

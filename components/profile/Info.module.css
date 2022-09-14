@@ -1,0 +1,19 @@
+.info {
+  display: flex;
+  align-items: center;
+  color: white;
+}
+
+.profile-image {
+  border-radius: 50%;
+  border: 2px solid white;
+}
+.profile-name {
+  margin-left: 2rem;
+}
+.span {
+  margin-top: 20px;
+  display: block;
+  width: 100%;
+  border-top: 2px solid white;
+}
