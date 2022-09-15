@@ -8,10 +8,11 @@ const Info: React.FC = () => {
     <Fragment>
       <div className={classes.info}>
         <Image
+          layout="fixed"
           className={classes["profile-image"]}
           src={photo}
-          width={200}
-          height={200}
+          width={150}
+          height={150}
           alt="profile picture"
         />
 

@@ -1,5 +1,5 @@
 .profile {
-  background-color: rgb(13, 219, 82);
+  background-color: var(--primary-color);
   width: 70vw;
   margin: auto;
   height: auto;

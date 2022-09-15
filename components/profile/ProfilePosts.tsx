@@ -11,6 +11,7 @@ const ProfilePosts: React.FC = () => {
         <div className={classes["profile-post"]}>
           <div className={classes["post-info"]}>
             <Image
+              layout="fixed"
               className={classes["post-image"]}
               src={photo}
               alt="profile-photo"

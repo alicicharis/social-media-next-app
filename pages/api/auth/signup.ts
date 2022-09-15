@@ -1,6 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import { MongoClient } from "mongodb";
-import { hashPassword } from "../../../lib/auth";
 
 async function handler(req: NextApiRequest, res: NextApiResponse) {
   console.log(req.method);
@@ -62,11 +61,9 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
     return;
   }
 
-  const hashedPassword = hashPassword(password);
-
   const result = await db
     .collection("users")
-    .insertOne({ userName: userName, email: email, password: hashedPassword });
+    .insertOne({ userName: userName, email: email, password: password });
 
   res.status(200).json({ message: "User registered successfully!" });
   client.close();

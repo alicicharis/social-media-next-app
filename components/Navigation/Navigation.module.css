@@ -4,7 +4,7 @@
   left: 0;
   width: 100%;
   display: flex;
-  background-color: rgb(13, 219, 82);
+  background-color: var(--primary-color);
   justify-content: space-between;
   color: white;
   align-items: center;

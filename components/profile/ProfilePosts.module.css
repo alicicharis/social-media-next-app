@@ -12,13 +12,14 @@
 .profile-post {
   display: flex;
   flex-direction: column;
-  background-color: rgb(13, 219, 82);
+  background-color: var(--primary-color);
   padding: 10px;
   color: white;
   border-radius: 10px;
 }
 .post-info {
   display: flex;
+  align-items: center;
 }
 .post-description {
   margin-left: 20px;
