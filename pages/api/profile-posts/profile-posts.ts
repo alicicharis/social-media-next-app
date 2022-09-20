@@ -32,7 +32,6 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
       .insertOne({ userEmail: userEmail, postText: postText });
 
     res.status(200).json({ message: "Post posted" });
-
     client.close();
   }
 }

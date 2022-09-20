@@ -3,7 +3,7 @@ import Image from "next/image";
 import photo from "../../public/myphoto.jpg";
 import { Fragment } from "react";
 
-const Info: React.FC = () => {
+const Info: React.FC<any> = ({ userName }) => {
   return (
     <Fragment>
       <div className={classes.info}>
@@ -16,7 +16,7 @@ const Info: React.FC = () => {
           alt="profile picture"
         />
 
-        <h1 className={classes["profile-name"]}>Haris Alicic</h1>
+        <h1 className={classes["profile-name"]}>{userName}</h1>
       </div>
       <span className={classes.span}></span>
     </Fragment>

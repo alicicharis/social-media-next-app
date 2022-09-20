@@ -16,6 +16,10 @@
   padding: 10px;
   color: white;
   border-radius: 10px;
+  margin-bottom: 10px;
+}
+.profile-post:last-child {
+  margin-bottom: 0;
 }
 .post-info {
   display: flex;
