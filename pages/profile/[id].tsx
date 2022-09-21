@@ -9,6 +9,8 @@ import ProfilePosts from "../../components/profile/ProfilePosts";
 import getPaths from "../../lib/paths";
 import getPosts from "../../lib/posts";
 import { GetServerSideProps } from "next";
+import { getSession } from "next-auth/react";
+import { PostContextProvider } from "../../store/PostContext";
 
 const ProfilePage: NextPage<any> = ({ data }) => {
   const userName = data.userName;
@@ -18,8 +20,10 @@ const ProfilePage: NextPage<any> = ({ data }) => {
       <Navigation />
       <Profile>
         <Info userName={userName} />
-        <ProfileForm />
-        <ProfilePosts posts={data.posts} />
+        <PostContextProvider>
+          <ProfileForm />
+          <ProfilePosts posts={data.posts} />
+        </PostContextProvider>
       </Profile>
     </Fragment>
   );
@@ -28,13 +32,21 @@ const ProfilePage: NextPage<any> = ({ data }) => {
 export default ProfilePage;
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  const email = context.params!.id;
+  const session = await getSession({ req: context.req });
+  if (!session) {
+    return {
+      redirect: {
+        destination: "/",
+        permanent: false,
+      },
+    };
+  }
 
-  const response = await getPaths(email);
+  const userName = context.params!.id;
 
-  const userName = response!.userName;
+  // const response = await getPaths(userName);
 
-  const posts = await getPosts(email);
+  const posts = await getPosts(userName);
 
   const data = {
     posts: JSON.parse(JSON.stringify(posts)),

@@ -1,6 +1,7 @@
 import { Fragment, useRef } from "react";
 import { getSession } from "next-auth/react";
 
+import PostsContext from "../../store/PostContext";
 import classes from "./ProfileForm.module.css";
 
 const ProfileForm: React.FC = () => {
@@ -12,19 +13,24 @@ const ProfileForm: React.FC = () => {
 
     const session = await getSession();
 
-    console.log(session);
-
     const email = session?.user!.email;
 
-    const response = await fetch("api/profile-posts/profile-posts", {
-      method: "POST",
-      body: JSON.stringify({ email, postText }),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
+    const userName = session!.user!.email;
 
-    const data = await response.json();
+    const date = new Date().toLocaleDateString();
+
+    try {
+      const response = await fetch("/api/profile-posts/profile-posts", {
+        method: "POST",
+        body: JSON.stringify({ email, postText, date, userName }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      const data = await response.json();
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (

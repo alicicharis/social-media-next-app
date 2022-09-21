@@ -1,20 +1,8 @@
+import { Fragment, useState } from "react";
+
 import Image from "next/image";
-import { Fragment } from "react";
 import classes from "./ProfilePosts.module.css";
 import photo from "../../public/myphoto.jpg";
-
-// const DUMMY_POSTS = [
-//   {
-//     name: "Haris Alicic",
-//     date: "October 9, 2001",
-//     post: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sequidolorum provident nulla ipsam, animi ipsa consequuntur sapienteodit! Saepe expedita fugiat odit nisi sapiente ea nesciunt istepossimus a vitae!",
-//   },
-//   {
-//     name: "Haris ",
-//     date: "October 9, 2001",
-//     post: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sequidolorum provident nulla ipsam, animi ipsa consequuntur sapienteodit! Saepe expedita fugiat odit nisi sapiente ea nesciunt istepossimus a vitae!",
-//   },
-// ];
 
 const ProfilePosts: React.FC<any> = (props) => {
   return (
@@ -33,8 +21,8 @@ const ProfilePosts: React.FC<any> = (props) => {
                 width={100}
               />
               <div className={classes["post-description"]}>
-                <p>Haris Alicic</p>
-                <p>October 9, 2001</p>
+                <p>{item.userName}</p>
+                <p>{item.date}</p>
               </div>
             </div>
             <span className={classes["post-span"]}></span>

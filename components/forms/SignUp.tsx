@@ -58,7 +58,7 @@ const SignUp: React.FC = () => {
         enteredEmail,
         enteredPassword
       );
-      router.push("/profile");
+      router.push(`/profile/${enteredEmail}`);
     } catch (error) {
       const errorMsg = error + "";
 

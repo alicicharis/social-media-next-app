@@ -1,6 +1,7 @@
 import { useRouter } from "next/router";
 import React, { Fragment, useContext, useRef, useState } from "react";
 import { signIn } from "next-auth/react";
+import { getSession } from "next-auth/react";
 
 import classes from "./SignUp.module.css";
 import DisplayContext from "../../store/FormContext";
@@ -30,9 +31,11 @@ const Login: React.FC = () => {
       password: enteredPassword,
     });
 
+    const session = await getSession();
     if (!result?.error) {
       setUserValid(true);
-      router.push(`/profile/${enteredEmail}`);
+      console.log("Ovo gledaj", session);
+      router.push(`/profile/${session!.user!.email}`);
       return;
     }
 

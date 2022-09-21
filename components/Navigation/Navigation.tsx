@@ -2,10 +2,14 @@ import classes from "./Navigation.module.css";
 import Link from "next/link";
 import { signOut } from "next-auth/react";
 import React from "react";
+import { useRouter } from "next/router";
 
 const Navigation: React.FC = () => {
-  const logoutHandler = () => {
+  const router = useRouter();
+  const logoutHandler = (event: React.FormEvent) => {
+    event.preventDefault();
     signOut();
+    router.push("/success");
   };
 
   return (

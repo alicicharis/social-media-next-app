@@ -5,6 +5,8 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method === "POST") {
     const postText = req.body.postText;
     const userEmail = req.body.email;
+    const date = req.body.date;
+    const userName = req.body.userName;
 
     if (!postText) {
       res.status(401).json({ message: "Invalid Input!" });
@@ -29,7 +31,12 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
 
     const result = await db
       .collection("posts")
-      .insertOne({ userEmail: userEmail, postText: postText });
+      .insertOne({
+        userEmail: userEmail,
+        postText: postText,
+        date: date,
+        userName: userName,
+      });
 
     res.status(200).json({ message: "Post posted" });
     client.close();
